@@ -1,23 +1,35 @@
 import "./App.css";
 import { useEffect } from "react";
 
-interface GeoData {
-  ip: string;
-  isp: string;
-  location: {
-    region: string;
-    timezone: string;
-  };
-}
-
 function App() {
   useEffect(() => {
-    fetch(
-      "https://geo.ipify.org/api/v2/country?apiKey=at_zJZXkPGIULduoxqxO9uqyPWe0CnAF&ipAddress=8.8.8.8"
-    )
-      .then((res) => res.json())
-      .then((data:GeoData) => console.log(data))
-      .catch((err) => console.log(err));
+    async function getGeoData() {
+      const apiKey = new URLSearchParams(),
+        ipAddress = new URLSearchParams();
+      apiKey.append("apiKey", "at_zJZXkPGIULduoxqxO9uqyPWe0CnAF");
+      ipAddress.append("ipAddress", "8.8.8.8");
+
+      const url: string = `https://geo.ipify.org/api/v2/country?${apiKey}&${ipAddress}`;
+
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const jsonData = await response.json();
+        console.log(jsonData);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(`Error fetching data: ${error.message}`);
+        } else {
+          console.error(error);
+        }
+      }
+    }
+
+    getGeoData();
   }, []);
   return <></>;
 }
