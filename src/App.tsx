@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
+import Map from "./components/map.tsx";
 
 type GeoData = {
   as: {
@@ -21,9 +22,7 @@ type GeoData = {
 function App() {
   const [track, setTrack] = useState<string>("");
   const [internetData, setInternetData] = useState<GeoData | null>(null);
-  const [searchParams, setSearchParams] = useState<URLSearchParams>(
-    new URLSearchParams(),
-  );
+  const [urlString, setUrlString] = useState<string>(``);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +30,7 @@ function App() {
     setTrack(event.target.value);
   };
 
-  async function getGeoData() {
+  function setData() {
     const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/,
       ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
 
@@ -39,44 +38,48 @@ function App() {
       ipAddress = new URLSearchParams(),
       domain = new URLSearchParams();
 
+    apiKey.append("apiKey", import.meta.env.VITE_API_KEY);
+
     if (domainRegex.test(track)) {
       domain.append("domain", track);
-      setSearchParams(new URLSearchParams({ domain: track }));
-      console.log(domain);
+      setUrlString(`https://geo.ipify.org/api/v2/country?${apiKey}&${domain}`);
     }
 
     if (ipv4Regex.test(track)) {
       ipAddress.append("ipAddress", track);
-      setSearchParams(new URLSearchParams({ ipAddress: track }));
-      console.log(ipAddress);
-    }
-
-    apiKey.append("apiKey", "at_zJZXkPGIULduoxqxO9uqyPWe0CnAF");
-    console.log(domain);
-    const url: string = `https://geo.ipify.org/api/v2/country?${apiKey}&${domain}`;
-
-    try {
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const jsonData = await response.json();
-      setInternetData(jsonData);
-      console.log(jsonData);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(`Error fetching data: ${error.message}`);
-      } else {
-        console.error(error);
-      }
+      setUrlString(
+        `https://geo.ipify.org/api/v2/country?${apiKey}&${ipAddress}`,
+      );
     }
   }
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, []);
+
+    async function getGeoData() {
+      try {
+        const response = await fetch(urlString);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const jsonData = await response.json();
+        setInternetData(jsonData);
+        setTrack("");
+        console.log(jsonData);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(`Error fetching data: ${error.message}`);
+          console.log(error.message);
+        } else {
+          console.error(error);
+        }
+      }
+    }
+
+    if (urlString.length) getGeoData();
+  }, [urlString]);
 
   return (
     <>
@@ -89,10 +92,20 @@ function App() {
         ref={inputRef}
         placeholder={"Enter IP address or domain name"}
       />
+      <br />
 
-      <button onClick={getGeoData}>Get Data</button>
+      <button onClick={setData}>Get Data</button>
 
-      {internetData && <p>{internetData.ip}</p>}
+      {internetData && (
+        <>
+          <p>{internetData.ip}</p>
+          <p>{internetData.location.region}</p>
+          <p>{internetData.location.timezone}</p>
+          <p>{internetData.isp}</p>
+        </>
+      )}
+
+      <Map />
     </>
   );
 }
