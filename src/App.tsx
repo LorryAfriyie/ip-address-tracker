@@ -30,20 +30,17 @@ function App() {
     setTrack(event.target.value);
   };
 
-  function setData() {
-    const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/,
-      ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
-
-    const apiKey = new URLSearchParams(),
-      ipAddress = new URLSearchParams(),
-      domain = new URLSearchParams();
-
-    apiKey.append("apiKey", import.meta.env.VITE_API_KEY);
+  function domainCheck(domain: URLSearchParams, apiKey: URLSearchParams) {
+    const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
 
     if (domainRegex.test(track)) {
       domain.append("domain", track);
       setUrlString(`https://geo.ipify.org/api/v2/country?${apiKey}&${domain}`);
     }
+  }
+
+  function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
+    const ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
 
     if (ipv4Regex.test(track)) {
       ipAddress.append("ipAddress", track);
@@ -51,6 +48,18 @@ function App() {
         `https://geo.ipify.org/api/v2/country?${apiKey}&${ipAddress}`,
       );
     }
+  }
+
+  function setData() {
+    const apiKey = new URLSearchParams(),
+      ipAddress = new URLSearchParams(),
+      domain = new URLSearchParams();
+
+    apiKey.append("apiKey", import.meta.env.VITE_API_KEY);
+
+    domainCheck(domain, apiKey);
+
+    ipCheck(ipAddress, apiKey);
   }
 
   useEffect(() => {
@@ -74,6 +83,7 @@ function App() {
           console.log(error.message);
         } else {
           console.error(error);
+          console.log("breaking here");
         }
       }
     }
