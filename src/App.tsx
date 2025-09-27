@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
 import Map from "./components/map.tsx";
+import ImageHeader from "./components/ImageHeader.tsx";
 
 type GeoData = {
   as: {
@@ -93,6 +94,7 @@ function App() {
 
   return (
     <>
+      <ImageHeader />
       <input
         type="text"
         id={"track"}
