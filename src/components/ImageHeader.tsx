@@ -4,7 +4,8 @@ import mobile_bg from "./pattern-bg-mobile.png";
 export default function ImageHeader() {
   return (
     <section className={"image-header-section"}>
-      <picture>
+      <p>hello</p>
+      {/*<picture>
         <source media={"(min-width: 60em)"} srcSet={desktop_bg} />
         <source srcSet={mobile_bg} />
         <img
@@ -12,7 +13,7 @@ export default function ImageHeader() {
           alt={desktop_bg}
           className={"image-header-section__img"}
         />
-      </picture>
+      </picture>*/}
     </section>
   );
 }

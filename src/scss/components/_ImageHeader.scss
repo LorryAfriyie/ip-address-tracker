@@ -1,5 +1,21 @@
 .image-header-section {
+  background-image: url('/pattern-bg-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-block-size: 43vh;
+  place-content: center;
+  text-align: center;
+
+  @media (min-width: 60em) {
+    background-image: url('/pattern-bg-desktop.png');
+  }
+
   &__img {
     width: 100vw;
+  }
+
+  picture {
+    display: grid;
+    place-items: center;
   }
 }
