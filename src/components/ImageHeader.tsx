@@ -1,19 +1,10 @@
-import desktop_bg from "./pattern-bg-desktop.png";
-import mobile_bg from "./pattern-bg-mobile.png";
+import IPTracker from "./IPTracker.tsx";
 
 export default function ImageHeader() {
   return (
     <section className={"image-header-section"}>
-      <p>hello</p>
-      {/*<picture>
-        <source media={"(min-width: 60em)"} srcSet={desktop_bg} />
-        <source srcSet={mobile_bg} />
-        <img
-          src={desktop_bg}
-          alt={desktop_bg}
-          className={"image-header-section__img"}
-        />
-      </picture>*/}
+      <h2 className={"text-white font-bold"}>IP Address Tracker</h2>
+      <IPTracker />
     </section>
   );
 }
