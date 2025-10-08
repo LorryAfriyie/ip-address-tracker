@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import Button from "./Button";
+import Input from "./Input";
 
 type GeoData = {
   as: {
@@ -91,18 +93,24 @@ export default function IPTracker() {
 
   return (
     <>
-      <input
-        type="text"
-        id={"track"}
-        name={"track"}
-        value={track}
-        onChange={handleChange}
-        ref={inputRef}
-        placeholder={"Enter IP address or domain name"}
-      />
-      <br />
+      <div className={"flex align-center justify-center"}>
+        <input
+          type="text"
+          id={"track"}
+          name={"track"}
+          value={track}
+          onChange={handleChange}
+          ref={inputRef}
+          placeholder={"Enter IP address or domain name"}
+        />
 
-      <button onClick={setData}>Get Data</button>
+        <Button
+          onClick={setData}
+          className={"bg-black text-white p-3 rounded-2xl"}
+        >
+          Get IP Data
+        </Button>
+      </div>
 
       {internetData && (
         <>
