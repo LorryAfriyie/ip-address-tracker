@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import NetworkInfo from "./NetworkInfo.tsx";
 import Button from "./Button";
 import Input from "./Input";
 
@@ -102,15 +103,18 @@ export default function IPTracker() {
           onChange={handleChange}
           ref={inputRef}
           placeholder={"Enter IP address or domain name"}
+          className={"rounded-l-xl bg-white px-5"}
         />
 
         <Button
           onClick={setData}
-          className={"bg-black text-white p-3 rounded-2xl"}
+          className={"bg-black text-white p-3 rounded-r-xl"}
         >
           Get IP Data
         </Button>
       </div>
+
+      <NetworkInfo />
 
       {internetData && (
         <>
