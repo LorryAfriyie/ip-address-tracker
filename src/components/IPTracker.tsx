@@ -114,16 +114,12 @@ export default function IPTracker() {
         </Button>
       </div>
 
-      <NetworkInfo />
-
-      {internetData && (
-        <>
-          <p>{internetData.ip}</p>
-          <p>{internetData.location.region}</p>
-          <p>{internetData.location.timezone}</p>
-          <p>{internetData.isp}</p>
-        </>
-      )}
+      <NetworkInfo
+        ip={internetData?.ip}
+        region={internetData?.location.region}
+        timezone={internetData?.location.timezone}
+        isp={internetData?.isp}
+      />
     </>
   );
 }
