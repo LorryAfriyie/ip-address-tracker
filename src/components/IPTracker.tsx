@@ -95,7 +95,7 @@ export default function IPTracker() {
   return (
     <>
       <div className={"flex align-center justify-center"}>
-        <input
+        <Input
           type="text"
           id={"track"}
           name={"track"}
