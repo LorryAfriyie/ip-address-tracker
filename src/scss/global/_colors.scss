@@ -3,3 +3,11 @@
   --very-dark-gray: hsl(0, 0%, 17%);
   --dark-gray: hsl(0, 0%, 59%);
 }
+
+.dark-gray {
+  color: var(--dark-gray);
+}
+
+.very-dark-gray {
+  color: var(--very-dark-gray);
+}
