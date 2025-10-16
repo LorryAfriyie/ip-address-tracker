@@ -3,8 +3,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-block-size: 40vh;
+  /*display: grid;
   place-content: center;
-  text-align: center;
+  text-align: center;*/
 
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');
