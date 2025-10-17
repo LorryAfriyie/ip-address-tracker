@@ -2,7 +2,11 @@ import IPTracker from "./IPTracker.tsx";
 
 export default function ImageHeader() {
   return (
-    <section className={"image-header-section"}>
+    <section
+      className={
+        "image-header-section flex justify-center items-center flex-col"
+      }
+    >
       <h2 className={"text-white font-bold mb-5 text-[2rem]"}>
         IP Address Tracker
       </h2>

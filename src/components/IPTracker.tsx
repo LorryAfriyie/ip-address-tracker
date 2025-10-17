@@ -94,7 +94,7 @@ export default function IPTracker() {
 
   return (
     <>
-      <div className={"mb-5"}>
+      <div className={"mb-5 flex"}>
         <Input
           type="text"
           id={"track"}
@@ -103,7 +103,7 @@ export default function IPTracker() {
           onChange={handleChange}
           ref={inputRef}
           placeholder={"Enter IP address or domain name"}
-          className={"rounded-l-xl bg-white px-5 focus:outline-0"}
+          className={"rounded-l-xl bg-white px-5 focus:outline-0 w-100"}
         />
 
         <Button
