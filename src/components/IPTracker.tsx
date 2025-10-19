@@ -36,7 +36,9 @@ export default function IPTracker() {
 
     if (domainRegex.test(track)) {
       domain.append("domain", track);
-      setUrlString(`https://geo.ipify.org/api/v2/country?${apiKey}&${domain}`);
+      setUrlString(
+        `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
+      );
     }
   }
 
@@ -46,7 +48,7 @@ export default function IPTracker() {
     if (ipv4Regex.test(track)) {
       ipAddress.append("ipAddress", track);
       setUrlString(
-        `https://geo.ipify.org/api/v2/country?${apiKey}&${ipAddress}`,
+        `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
       );
     }
   }
