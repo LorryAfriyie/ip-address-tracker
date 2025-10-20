@@ -71,7 +71,6 @@ export default function IPTracker() {
     async function getGeoData() {
       try {
         const response = await fetch(urlString);
-
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
