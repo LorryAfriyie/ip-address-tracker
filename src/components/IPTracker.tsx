@@ -35,6 +35,7 @@ export default function IPTracker() {
     const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
 
     if (domainRegex.test(track)) {
+      console.log("Check domain");
       domain.append("domain", track);
       setUrlString(
         `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
@@ -46,6 +47,7 @@ export default function IPTracker() {
     const ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
 
     if (ipv4Regex.test(track)) {
+      console.log("Check IP");
       ipAddress.append("ipAddress", track);
       setUrlString(
         `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
@@ -109,7 +111,7 @@ export default function IPTracker() {
 
         <Button
           onClick={setData}
-          className={"bg-black text-white p-3 rounded-r-xl"}
+          className={"text-white p-3 rounded-r-xl ip-check-btn"}
         >
           Get IP Data
         </Button>
