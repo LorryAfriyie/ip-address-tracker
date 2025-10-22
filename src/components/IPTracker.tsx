@@ -25,6 +25,8 @@ export default function IPTracker() {
   const [internetData, setInternetData] = useState<GeoData | null>(null);
   const [urlString, setUrlString] = useState<string>(``);
 
+  const apiKeyValue = import.meta.env.VITE_API_KEY as string;
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +62,7 @@ export default function IPTracker() {
       ipAddress = new URLSearchParams(),
       domain = new URLSearchParams();
 
-    apiKey.append("apiKey", import.meta.env.VITE_API_KEY);
+    apiKey.append("apiKey", apiKeyValue);
 
     domainCheck(domain, apiKey);
 
@@ -72,7 +74,10 @@ export default function IPTracker() {
 
     async function getGeoData() {
       try {
-        const response = await fetch(urlString);
+        const response = await fetch(urlString, {
+          mode: "cors",
+          method: "GET",
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
