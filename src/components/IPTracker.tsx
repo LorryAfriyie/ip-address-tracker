@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import NetworkInfo from "./NetworkInfo.tsx";
+import Axios from "axios";
 import Button from "./Button";
 import Input from "./Input";
 
@@ -74,7 +75,25 @@ export default function IPTracker() {
 
     async function getGeoData() {
       try {
-        const response = await fetch(urlString, {
+        await Axios.post(urlString)
+          .then((res) => {
+            if (res.status === 200) {
+              console.log(res.data);
+              setInternetData(res.data);
+              return;
+            }
+          })
+          .catch((err) => {
+            if (err) {
+              console.error(err);
+              console.log(err);
+            }
+          })
+          .finally(() => {
+            setTrack("");
+          });
+
+        /*const response = await fetch(urlString, {
           mode: "cors",
           method: "GET",
         });
@@ -85,7 +104,7 @@ export default function IPTracker() {
         const jsonData = await response.json();
         setInternetData(jsonData);
         setTrack("");
-        console.log(jsonData);
+        console.log(jsonData);*/
       } catch (error) {
         if (error instanceof Error) {
           console.error(`Error fetching data: ${error.message}`);
