@@ -82,6 +82,18 @@ export default function IPTracker() {
               setInternetData(res.data);
               return;
             }
+
+            if (res.status === 400) {
+              console.log("400 error");
+              console.log(res.data.message);
+              return;
+            }
+
+            if (res.status === 500) {
+              console.log("500 error");
+              console.log(res.data.message);
+              return;
+            }
           })
           .catch((err) => {
             if (err) {
