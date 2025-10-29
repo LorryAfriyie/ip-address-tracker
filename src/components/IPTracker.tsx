@@ -27,6 +27,8 @@ export default function IPTracker() {
   const [urlString, setUrlString] = useState<string>(``);
 
   const apiKeyValue = import.meta.env.VITE_API_KEY as string;
+  const ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/,
+    domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,27 +37,19 @@ export default function IPTracker() {
   };
 
   function domainCheck(domain: URLSearchParams, apiKey: URLSearchParams) {
-    const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
-
-    if (domainRegex.test(track)) {
-      console.log("Check domain");
-      domain.append("domain", track);
-      setUrlString(
-        `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
-      );
-    }
+    console.log("Check domain");
+    domain.append("domain", track);
+    setUrlString(
+      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
+    );
   }
 
   function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
-    const ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
-
-    if (ipv4Regex.test(track)) {
-      console.log("Check IP");
-      ipAddress.append("ipAddress", track);
-      setUrlString(
-        `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
-      );
-    }
+    console.log("Check IP");
+    ipAddress.append("ipAddress", track);
+    setUrlString(
+      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
+    );
   }
 
   function setData() {
@@ -65,9 +59,9 @@ export default function IPTracker() {
 
     apiKey.append("apiKey", apiKeyValue);
 
-    domainCheck(domain, apiKey);
+    if (domainRegex.test(track)) domainCheck(domain, apiKey);
 
-    ipCheck(ipAddress, apiKey);
+    if (ipv4Regex.test(track)) ipCheck(ipAddress, apiKey);
   }
 
   useEffect(() => {
