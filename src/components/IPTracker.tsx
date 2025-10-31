@@ -98,19 +98,6 @@ export default function IPTracker() {
           .finally(() => {
             setTrack("");
           });
-
-        /*const response = await fetch(urlString, {
-          mode: "cors",
-          method: "GET",
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const jsonData = await response.json();
-        setInternetData(jsonData);
-        setTrack("");
-        console.log(jsonData);*/
       } catch (error) {
         if (error instanceof Error) {
           console.error(`Error fetching data: ${error.message}`);
