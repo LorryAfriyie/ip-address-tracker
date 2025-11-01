@@ -22,12 +22,12 @@ type GeoData = {
 };
 
 export default function IPTracker() {
-  const [track, setTrack] = useState<string>("");
-  const [internetData, setInternetData] = useState<GeoData | null>(null);
-  const [urlString, setUrlString] = useState<string>(``);
+  const [track, setTrack] = useState<string>(""),
+    [internetData, setInternetData] = useState<GeoData | null>(null),
+    [urlString, setUrlString] = useState<string>(``);
 
-  const apiKeyValue = import.meta.env.VITE_API_KEY as string;
-  const ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/,
+  const apiKeyValue = import.meta.env.VITE_API_KEY as string,
+    ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/,
     domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -42,6 +42,8 @@ export default function IPTracker() {
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
     );
+
+    if (urlString.length) getGeoData();
   }
 
   function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
@@ -50,6 +52,8 @@ export default function IPTracker() {
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
     );
+
+    if (urlString.length) getGeoData();
   }
 
   function setData() {
@@ -64,53 +68,51 @@ export default function IPTracker() {
     if (ipv4Regex.test(track)) ipCheck(ipAddress, apiKey);
   }
 
-  useEffect(() => {
-    inputRef.current?.focus();
+  async function getGeoData() {
+    try {
+      await Axios.post(urlString)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res.data);
+            setInternetData(res.data);
+            return;
+          }
 
-    async function getGeoData() {
-      try {
-        await Axios.post(urlString)
-          .then((res) => {
-            if (res.status === 200) {
-              console.log(res.data);
-              setInternetData(res.data);
-              return;
-            }
+          if (res.status === 400) {
+            console.log("400 error");
+            console.log(res.data.message);
+            return;
+          }
 
-            if (res.status === 400) {
-              console.log("400 error");
-              console.log(res.data.message);
-              return;
-            }
-
-            if (res.status === 500) {
-              console.log("500 error");
-              console.log(res.data.message);
-              return;
-            }
-          })
-          .catch((err) => {
-            if (err) {
-              console.error(err);
-              console.log(err);
-            }
-          })
-          .finally(() => {
-            setTrack("");
-          });
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error(`Error fetching data: ${error.message}`);
-          console.log(error.message);
-        } else {
-          console.error(error);
-          console.log("breaking here");
-        }
+          if (res.status === 500) {
+            console.log("500 error");
+            console.log(res.data.message);
+            return;
+          }
+        })
+        .catch((err) => {
+          if (err) {
+            console.error(err);
+            console.log(err);
+          }
+        })
+        .finally(() => {
+          setTrack("");
+        });
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(`Error fetching data: ${error.message}`);
+        console.log(error.message);
+      } else {
+        console.error(error);
+        console.log("breaking here");
       }
     }
+  }
 
-    if (urlString.length) getGeoData();
-  }, [urlString]);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <>
