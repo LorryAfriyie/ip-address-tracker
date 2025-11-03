@@ -15,7 +15,12 @@ type GeoData = {
   ip: string;
   isp: string;
   location: {
+    city: string;
     country: string;
+    geomaneId: number;
+    lat: number;
+    lng: number;
+    postalCode: number;
     region: string;
     timezone: string;
   };
@@ -43,7 +48,7 @@ export default function IPTracker() {
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
     );
 
-    if (urlString.length) getGeoData();
+    getGeoData();
   }
 
   function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
@@ -53,7 +58,7 @@ export default function IPTracker() {
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
     );
 
-    if (urlString.length) getGeoData();
+    getGeoData();
   }
 
   function setData() {
@@ -69,31 +74,19 @@ export default function IPTracker() {
   }
 
   async function getGeoData() {
+    console.log("working");
     try {
-      await Axios.post(urlString)
+      await Axios.get(urlString)
         .then((res) => {
           if (res.status === 200) {
             console.log(res.data);
             setInternetData(res.data);
             return;
           }
-
-          if (res.status === 400) {
-            console.log("400 error");
-            console.log(res.data.message);
-            return;
-          }
-
-          if (res.status === 500) {
-            console.log("500 error");
-            console.log(res.data.message);
-            return;
-          }
         })
         .catch((err) => {
           if (err) {
-            console.error(err);
-            console.log(err);
+            console.error(err.message);
           }
         })
         .finally(() => {
@@ -103,15 +96,26 @@ export default function IPTracker() {
       if (error instanceof Error) {
         console.error(`Error fetching data: ${error.message}`);
         console.log(error.message);
-      } else {
-        console.error(error);
-        console.log("breaking here");
       }
     }
   }
 
+  function defaultData() {
+    Axios.get(
+      `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}&ipAddress=8.8.8.8`,
+    )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  }
+
   useEffect(() => {
     inputRef.current?.focus();
+
+    defaultData();
   }, []);
 
   return (
