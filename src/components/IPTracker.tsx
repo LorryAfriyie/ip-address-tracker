@@ -47,8 +47,6 @@ export default function IPTracker() {
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
     );
-
-    getGeoData();
   }
 
   function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
@@ -57,8 +55,6 @@ export default function IPTracker() {
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
     );
-
-    getGeoData();
   }
 
   function setData() {
@@ -73,50 +69,51 @@ export default function IPTracker() {
     if (ipv4Regex.test(track)) ipCheck(ipAddress, apiKey);
   }
 
-  async function getGeoData() {
-    console.log("working");
-    try {
-      await Axios.get(urlString)
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(res.data);
-            setInternetData(res.data);
-            return;
-          }
-        })
-        .catch((err) => {
-          if (err) {
-            console.error(err.message);
-          }
-        })
-        .finally(() => {
-          setTrack("");
-        });
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(`Error fetching data: ${error.message}`);
-        console.log(error.message);
-      }
-    }
-  }
-
-  function defaultData() {
-    Axios.get(
-      `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}&ipAddress=8.8.8.8`,
-    )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
-  }
-
   useEffect(() => {
     inputRef.current?.focus();
 
-    defaultData();
-  }, []);
+    async function getGeoData() {
+      try {
+        await Axios.get(urlString)
+          .then((res) => {
+            if (res.data) {
+              console.log(res);
+              setInternetData(res.data);
+              return;
+            }
+          })
+          .catch((err) => {
+            if (err) {
+              console.error(
+                `Error fetching data from the server. ${err.message}.`,
+              );
+            }
+          })
+          .finally(() => {
+            setTrack("");
+          });
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(`Error fetching data: ${error.message}`);
+        }
+      }
+    }
+
+    function defaultData() {
+      Axios.get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}&ipAddress=8.8.8.8`,
+      )
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.error(err.message);
+        });
+    }
+    //defaultData();
+
+    if (urlString.length) getGeoData();
+  }, [urlString]);
 
   return (
     <>
@@ -142,8 +139,8 @@ export default function IPTracker() {
 
       <NetworkInfo
         ip={internetData?.ip}
-        region={internetData?.location.region}
-        timezone={internetData?.location.timezone}
+        region={internetData?.location?.region}
+        timezone={internetData?.location?.timezone}
         isp={internetData?.isp}
       />
     </>
