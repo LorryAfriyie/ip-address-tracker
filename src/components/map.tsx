@@ -1,15 +1,23 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useMapContext } from "../context/MapContext.tsx";
 
 export default function Map() {
   const mapRef = useRef(null),
-    latitude = 51.505,
-    longitude = -0.09;
+    latitude = 0,
+    longitude = 0;
+
+  const { lat, lng } = useMapContext();
+
+  useEffect(() => {
+    console.log(lat);
+    console.log(lng);
+  }, [lat, lng]);
 
   return (
     <MapContainer
-      center={[latitude, longitude]}
+      center={[lat, lng]}
       zoom={13}
       ref={mapRef}
       style={{ height: "500px" }}

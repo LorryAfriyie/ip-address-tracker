@@ -1,3 +1,4 @@
+import { MapProvider } from "./context/MapContext.tsx";
 import "./App.css";
 import Map from "./components/map.tsx";
 import ImageHeader from "./components/ImageHeader.tsx";
@@ -5,8 +6,10 @@ import ImageHeader from "./components/ImageHeader.tsx";
 function App() {
   return (
     <>
-      <ImageHeader />
-      <Map />
+      <MapProvider>
+        <ImageHeader />
+        <Map />
+      </MapProvider>
     </>
   );
 }

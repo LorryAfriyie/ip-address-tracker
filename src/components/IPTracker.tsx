@@ -3,6 +3,7 @@ import NetworkInfo from "./NetworkInfo.tsx";
 import Axios from "axios";
 import Button from "./Button";
 import Input from "./Input";
+import { useMapContext } from "../context/MapContext.tsx";
 
 type GeoData = {
   as: {
@@ -27,6 +28,8 @@ type GeoData = {
 };
 
 export default function IPTracker() {
+  const { setLat, setLng } = useMapContext();
+
   const [track, setTrack] = useState<string>(""),
     [internetData, setInternetData] = useState<GeoData | null>(null),
     [urlString, setUrlString] = useState<string>(``);
@@ -79,6 +82,8 @@ export default function IPTracker() {
             if (res.data) {
               console.log(res);
               setInternetData(res.data);
+              setLat(res.data.location.lat);
+              setLng(res.data.location.lng);
               return;
             }
           })
@@ -110,7 +115,7 @@ export default function IPTracker() {
           console.error(err.message);
         });
     }
-    //defaultData();
+    defaultData();
 
     if (urlString.length) getGeoData();
   }, [urlString]);
