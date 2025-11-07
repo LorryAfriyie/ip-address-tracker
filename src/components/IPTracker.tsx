@@ -118,7 +118,7 @@ export default function IPTracker() {
     defaultData();
 
     if (urlString.length) getGeoData();
-  }, [urlString]);
+  }, [apiKeyValue, setLat, setLng, urlString]);
 
   return (
     <>
@@ -130,7 +130,7 @@ export default function IPTracker() {
           value={track}
           onChange={handleChange}
           ref={inputRef}
-          placeholder={"Enter IP address or domain name"}
+          placeholder={"Search for any IP address or domain name"}
           className={"rounded-l-xl bg-white px-5 focus:outline-0 w-100"}
         />
 
