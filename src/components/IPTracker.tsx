@@ -80,7 +80,6 @@ export default function IPTracker() {
         await Axios.get(urlString)
           .then((res) => {
             if (res.data) {
-              console.log(res);
               setInternetData(res.data);
               setLat(res.data.location.lat);
               setLng(res.data.location.lng);
@@ -110,6 +109,9 @@ export default function IPTracker() {
       )
         .then((res) => {
           console.log(res.data);
+          setInternetData(res.data);
+          setLat(res.data.location.lat);
+          setLng(res.data.location.lng);
         })
         .catch((err) => {
           console.error(err.message);
