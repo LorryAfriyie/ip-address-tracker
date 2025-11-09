@@ -27,6 +27,7 @@ export function useMapContext() {
 export function MapProvider({ children }: MapNode) {
   const [lat, setLat] = useState<number>(0),
     [lng, setLng] = useState<number>(0);
+
   return (
     <MapInfoContext.Provider value={{ lat, setLat, lng, setLng }}>
       {children}

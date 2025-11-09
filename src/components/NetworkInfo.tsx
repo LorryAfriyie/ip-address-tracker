@@ -14,23 +14,23 @@ export default function NetworkInfo({ ...props }: NetworkInfoProps) {
       }
     >
       <div>
-        <p className={"uppercase font-bold"}>ip address</p>
-        <p className={"xl:text-2xl ip-address font-bold"}>{ip}</p>
+        <small className={"uppercase font-bold"}>ip address</small>
+        <p className={"xl:text-2xl ip-address"}>{ip}</p>
       </div>
 
       <div>
-        <p className={"uppercase font-bold"}>location</p>
-        <p className={"xl:text-2xl region font-bold"}>{region}</p>
+        <small className={"uppercase font-bold"}>location</small>
+        <p className={"xl:text-2xl region"}>{region}</p>
       </div>
 
       <div>
-        <p className={"uppercase font-bold"}>timezone</p>
-        <p className={"xl:text-2xl timezone font-bold"}>{timezone}</p>
+        <small className={"uppercase font-bold"}>timezone</small>
+        <p className={"xl:text-2xl timezone"}>{timezone}</p>
       </div>
 
       <div>
-        <p className={"uppercase font-bold"}>isp</p>
-        <p className={"xl:text-2xl isp font-bold"}>{isp}</p>
+        <small className={"uppercase font-bold"}>isp</small>
+        <p className={"xl:text-2xl isp"}>{isp}</p>
       </div>
     </div>
   );
