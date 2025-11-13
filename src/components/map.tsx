@@ -4,11 +4,11 @@ import "leaflet/dist/leaflet.css";
 import { useMapContext } from "../context/MapContext.tsx";
 
 export default function Map() {
-  const mapRef = useRef(null),
-    latitude = 0,
-    longitude = 0;
-
   const { lat, lng } = useMapContext();
+
+  const mapRef = useRef(null),
+    latitude = 51.505,
+    longitude = -0.09;
 
   useEffect(() => {
     console.log(lat);
@@ -17,7 +17,7 @@ export default function Map() {
 
   return (
     <MapContainer
-      center={[lat, lng]}
+      center={[latitude, longitude]}
       zoom={13}
       ref={mapRef}
       style={{ height: "500px" }}
