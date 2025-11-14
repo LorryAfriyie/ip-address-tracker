@@ -10,22 +10,25 @@ export default function Map() {
     latitude = 51.505,
     longitude = -0.09;
 
+  const mapOptions = {
+    center: [lat, lng],
+    zoom: 13,
+    maxZoom: 18,
+    minZoom: 5,
+  };
+
   useEffect(() => {
     console.log(lat);
     console.log(lng);
   }, [lat, lng]);
 
   return (
-    <MapContainer
-      center={[latitude, longitude]}
-      zoom={13}
-      ref={mapRef}
-      style={{ height: "500px" }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-    </MapContainer>
+    <>
+      {lat && (
+        <MapContainer {...mapOptions} ref={mapRef} style={{ height: "500px" }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        </MapContainer>
+      )}
+    </>
   );
 }
