@@ -1,7 +1,19 @@
-import { useEffect, useRef, useMemo } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { useEffect, useRef } from "react";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMapContext } from "../context/MapContext.tsx";
+
+type MyComponentProps = {
+  lat: number;
+  lng: number;
+};
+
+function MyComponent({ lat, lng }: MyComponentProps) {
+  const map = useMap();
+  map.setView([lat, lng]);
+  console.log("map center:", map.getCenter().lat);
+  return null;
+}
 
 export default function Map() {
   const { lat, lng } = useMapContext();
@@ -9,13 +21,6 @@ export default function Map() {
   const mapRef = useRef(null);
   const latitude = 51.505;
   const longitude = -0.09;
-
-  const mapOptions = {
-    center: [lat, lng],
-    zoom: 13,
-    maxZoom: 18,
-    minZoom: 5,
-  };
 
   useEffect(() => {
     console.log(lat);
@@ -31,8 +36,9 @@ export default function Map() {
         ref={mapRef}
         style={{ height: "500px" }}
       >
+        <MyComponent lat={lat} lng={lng} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[lat, lng]} />
+        <Marker position={[latitude, longitude]} />
       </MapContainer>
     </>
   );
