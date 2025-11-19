@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMapContext } from "../context/MapContext.tsx";
@@ -11,16 +11,11 @@ type MyComponentProps = {
 function MyComponent({ lat, lng }: MyComponentProps) {
   const map = useMap();
   map.setView([lat, lng]);
-  console.log("map center:", map.getCenter().lat);
   return null;
 }
 
 export default function Map() {
   const { lat, lng } = useMapContext();
-
-  const mapRef = useRef(null);
-  const latitude = 51.505;
-  const longitude = -0.09;
 
   useEffect(() => {
     console.log(lat);
@@ -30,15 +25,14 @@ export default function Map() {
   return (
     <>
       <MapContainer
-        center={{ lat: latitude, lng: longitude }}
-        zoom={13}
+        center={{ lat: 0, lng: 0 }}
+        zoom={15}
         scrollWheelZoom={false}
-        ref={mapRef}
-        style={{ height: "500px" }}
+        style={{ height: "100vh", width: "100%" }}
       >
         <MyComponent lat={lat} lng={lng} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[latitude, longitude]} />
+        <Marker position={[lat, lng]} />
       </MapContainer>
     </>
   );
