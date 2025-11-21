@@ -2,8 +2,12 @@ import React from "react";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
-  <button {...props}>{children}</button>
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, ...props }, ref) => (
+    <button {...props} ref={ref}>
+      {children}
+    </button>
+  ),
 );
 
 export default Button;

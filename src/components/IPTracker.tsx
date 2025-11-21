@@ -38,7 +38,8 @@ export default function IPTracker() {
     ipv4Regex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/,
     domainRegex = /^(?!:\/\/)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/;
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null),
+    buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTrack(event.target.value);
@@ -120,6 +121,14 @@ export default function IPTracker() {
     defaultData();
 
     if (urlString.length) getGeoData();
+
+    inputRef.current?.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        buttonRef.current?.click();
+        console.log("Enter button clicked");
+      }
+    });
   }, [apiKeyValue, setLat, setLng, urlString]);
 
   return (
@@ -138,6 +147,7 @@ export default function IPTracker() {
 
         <Button
           onClick={setData}
+          ref={buttonRef}
           className={"text-white p-3 rounded-r-xl ip-check-btn"}
         >
           Get IP Data
