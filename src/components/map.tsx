@@ -28,7 +28,7 @@ export default function Map() {
         center={{ lat: 0, lng: 0 }}
         zoom={15}
         scrollWheelZoom={false}
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "100vh", width: "100%", zIndex: '0' }}
       >
         <MyComponent lat={lat} lng={lng} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

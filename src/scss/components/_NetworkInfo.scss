@@ -1,4 +1,7 @@
 .network-info {
+  position:absolute;
+  top: 13.2rem;
+  z-index: 1;
   .ip-address, .region, .timezone, .isp {
     color: var(--black);
   }

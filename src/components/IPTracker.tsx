@@ -126,14 +126,13 @@ export default function IPTracker() {
       if (e.key === "Enter") {
         e.preventDefault();
         buttonRef.current?.click();
-        console.log("Enter button clicked");
       }
     });
   }, [apiKeyValue, setLat, setLng, urlString]);
 
   return (
     <>
-      <div className={"mb-5 flex"}>
+      <div className={"mb-5 flex relative"}>
         <Input
           type="text"
           id={"track"}
