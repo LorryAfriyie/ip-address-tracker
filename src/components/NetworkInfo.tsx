@@ -10,7 +10,7 @@ export default function NetworkInfo({ ...props }: NetworkInfoProps) {
   return (
     <div
       className={
-        "flex justify-center items-center gap-5 bg-white rounded-[7px] dark-gray px-5 py-2 network-info"
+        "bg-white rounded-[7px] dark-gray px-5 py-2 network-info"
       }
     >
       <div>

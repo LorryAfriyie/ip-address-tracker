@@ -1,8 +1,24 @@
+.network-container {
+  /* display: grid;
+  place-content: center; */
+}
+
 .network-info {
-  position:absolute;
-  top: 13.2rem;
   z-index: 1;
+  display:grid;
+  place-content: center;
+  grid-template-columns: repeat(4,1fr);
+  gap: 4rem;
+  position:relative;
+  top: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  small {
+    letter-spacing: .1rem;
+  }
   .ip-address, .region, .timezone, .isp {
     color: var(--black);
+    word-wrap: break-word;
   }
 }

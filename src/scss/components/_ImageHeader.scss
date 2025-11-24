@@ -4,6 +4,9 @@
   background-size: cover;
   min-block-size: 40vh;
 
+  display:grid;
+  place-content: center;
+
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');
   }

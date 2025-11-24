@@ -4,10 +4,10 @@ export default function ImageHeader() {
   return (
     <section
       className={
-        "image-header-section flex justify-center items-center flex-col"
+        "image-header-section"
       }
     >
-      <h2 className={"text-white font-bold mb-5 text-[2rem]"}>
+      <h2 className={"text-white text-center font-bold mb-5 text-[2rem]"}>
         IP Address Tracker
       </h2>
       <IPTracker />
