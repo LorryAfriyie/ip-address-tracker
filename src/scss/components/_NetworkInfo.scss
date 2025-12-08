@@ -18,6 +18,7 @@
 
   @media (max-width: 40em) {
     flex-direction: column;
+    text-align: center;
   }
 
   small {
@@ -28,5 +29,6 @@
     color: var(--black);
     word-wrap: break-word;
     font-weight: 500;
+    font-size: 1.25rem;
   }
 }

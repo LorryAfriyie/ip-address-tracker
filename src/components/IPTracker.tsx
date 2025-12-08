@@ -49,7 +49,7 @@ export default function IPTracker() {
     console.log("Check domain");
     domain.append("domain", track);
     setUrlString(
-      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`
+      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
     );
   }
 
@@ -57,7 +57,7 @@ export default function IPTracker() {
     console.log("Check IP");
     ipAddress.append("ipAddress", track);
     setUrlString(
-      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`
+      `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
     );
   }
 
@@ -90,7 +90,7 @@ export default function IPTracker() {
           .catch((err) => {
             if (err) {
               console.error(
-                `Error fetching data from the server. ${err.message}.`
+                `Error fetching data from the server. ${err.message}.`,
               );
             }
           })
@@ -106,7 +106,7 @@ export default function IPTracker() {
 
     function defaultData() {
       Axios.get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}`,
       )
         .then((res) => {
           console.log(res.data);
@@ -132,7 +132,7 @@ export default function IPTracker() {
 
   return (
     <>
-      <div className={"mb-5 flex justify-center"}>
+      <div className={"flex justify-center"}>
         <Input
           type="text"
           id={"track"}
@@ -141,7 +141,9 @@ export default function IPTracker() {
           onChange={handleChange}
           ref={inputRef}
           placeholder={"Search for any IP address or domain name"}
-          className={"rounded-l-2xl bg-white px-5 py-4 focus:outline-0 w-100"}
+          className={
+            "rounded-l-2xl bg-white px-5 py-4 focus:outline-0 lg:w-100"
+          }
         />
 
         <Button
