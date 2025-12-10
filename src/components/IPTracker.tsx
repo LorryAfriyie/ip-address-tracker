@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import NetworkInfo from "./NetworkInfo.tsx";
 import Axios from "axios";
+import { FaAngleRight } from "react-icons/fa";
 import Button from "./Button";
 import Input from "./Input";
 import { useMapContext } from "../context/MapContext.tsx";
@@ -149,9 +150,9 @@ export default function IPTracker() {
         <Button
           onClick={setData}
           ref={buttonRef}
-          className={"text-white p-3 rounded-r-2xl ip-check-btn"}
+          className={"text-white p-4 px-5 rounded-r-2xl ip-check-btn"}
         >
-          Get IP Data
+          <FaAngleRight />
         </Button>
       </div>
 
