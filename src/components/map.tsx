@@ -12,6 +12,7 @@ const mapStyles: CSSProperties = {
   height: "100vh",
   width: "100%",
   zIndex: "0",
+  position: "relative",
 };
 
 function MyComponent({ lat, lng }: MyComponentProps) {

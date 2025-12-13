@@ -1,12 +1,17 @@
 import IPTracker from "./IPTracker.tsx";
+import NetworkInfo from "./NetworkInfo";
 
 export default function ImageHeader() {
   return (
     <section className={"image-header-section"}>
-      <h2 className={"text-white text-center mb-5 text-[2rem]"}>
-        IP Address Tracker
-      </h2>
-      <IPTracker />
+      <div className="center">
+        <h2 className={"text-white text-center text-[2rem]"}>
+          IP Address Tracker
+        </h2>
+        <IPTracker />
+      </div>
+
+      <NetworkInfo />
     </section>
   );
 }

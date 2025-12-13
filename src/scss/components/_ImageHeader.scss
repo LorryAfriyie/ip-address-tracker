@@ -3,10 +3,16 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-block-size: 40vh;
+  position: relative;
 
-  display: flex;
+  .center {
+    height: 100%;
+    display: grid;
+  }
+
+  /*display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column;*/
 
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');
