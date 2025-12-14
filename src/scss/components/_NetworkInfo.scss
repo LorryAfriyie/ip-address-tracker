@@ -9,7 +9,7 @@
 
   & > * {
     width: 100%;
-    border-left: 1px solid black;
+    border-left: 2px solid var(--dark-gray);
     padding-left: 1rem;
 
     &:nth-child(1 of .col) {

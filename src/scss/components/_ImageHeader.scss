@@ -5,14 +5,9 @@
   min-block-size: 40vh;
   position: relative;
 
-  .center {
-    height: 100%;
-    display: grid;
-  }
-
-  /*display: flex;
+  display: flex;
   justify-content: center;
-  flex-direction: column;*/
+  align-items: center;
 
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');
