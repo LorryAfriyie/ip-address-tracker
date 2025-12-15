@@ -1,15 +1,19 @@
 .network-info {
   z-index: 1;
   display: flex;
-  padding: 1rem;
+  padding: 1.75rem;
   position: absolute;
-  bottom: -1.75rem;
+  bottom: -3.5rem;
   left: 10%;
   right: 10%;
 
+  @media (max-width: 40em) {
+    bottom: -5rem;
+  }
+
   & > * {
     width: 100%;
-    border-left: 2px solid var(--dark-gray);
+    border-left: 1px solid var(--dark-gray);
     padding-left: 1rem;
 
     &:nth-child(1 of .col) {
@@ -34,6 +38,10 @@
     color: var(--black);
     word-wrap: break-word;
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
+
+    @media (max-width: 40em) {
+      font-size: 1.25rem;
+    }
   }
 }
