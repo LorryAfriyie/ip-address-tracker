@@ -5,9 +5,11 @@
   min-block-size: 40vh;
   position: relative;
 
-  display: flex;
-  justify-content: center;
-  //align-items: center;
+  h2 {
+    padding-block-start: 2rem;
+    padding-block-end: 1rem;
+  }
+
 
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');
