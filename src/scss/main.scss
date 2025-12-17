@@ -1,3 +1,11 @@
 @use "global";
 @use "components";
 
+
+.control-container {
+  padding-inline: 1rem;
+
+  @media (min-width: 60em) {
+    padding-inline: 0;
+  }
+}

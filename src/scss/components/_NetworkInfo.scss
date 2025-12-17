@@ -6,22 +6,28 @@
   bottom: -3.5rem;
   left: 10%;
   right: 10%;
+  //margin-inline: 1rem;
 
   & > * {
     width: 100%;
     border-left: 1px solid var(--dark-gray);
     padding-left: 1rem;
+    padding-right: 1rem;
 
     &:nth-child(1 of .col) {
       border-left: 0;
     }
 
-    @media (max-width: 40em) {
+    @media (max-width: 50em) {
       border-left: none;
     }
   }
 
-  @media (max-width: 40em) {
+  @media (max-width: 70em) {
+    bottom: -5.25rem;
+  }
+
+  @media (max-width: 50em) {
     flex-direction: column;
     text-align: center;
   }
@@ -35,6 +41,10 @@
     word-wrap: break-word;
     font-weight: 500;
     font-size: 1.75rem;
+
+    @media (max-width: 70em) {
+      font-size: 1.5rem;
+    }
 
     @media (max-width: 40em) {
       font-size: 1.25rem;
