@@ -133,7 +133,7 @@ export default function IPTracker() {
 
   return (
     <>
-      <div className={"flex justify-center control-container mb-5"}>
+      <div className={"flex justify-center control-container"}>
         <Input
           type="text"
           id={"track"}
@@ -143,7 +143,7 @@ export default function IPTracker() {
           ref={inputRef}
           placeholder={"Search for any IP address or domain name"}
           className={
-            "rounded-l-2xl bg-white px-5 py-4 focus:outline-0 w-full sm:w-1/2"
+            "rounded-l-2xl bg-white px-5 py-4 focus:outline-0 w-full sm:w-1/3"
           }
         />
 

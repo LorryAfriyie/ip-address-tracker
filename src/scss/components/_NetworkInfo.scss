@@ -1,12 +1,18 @@
 .network-info {
   z-index: 1;
   display: flex;
-  padding: 1.75rem;
+  padding: 1.5rem;
   position: absolute;
-  bottom: -3.5rem;
-  left: 10%;
-  right: 10%;
-  //margin-inline: 1rem;
+  top: 11rem;
+  left: 5%;
+  right: 5%;
+
+  @media (min-width: 40em) {
+    padding: 1.75rem;
+    left: 10%;
+    right: 10%;
+    top: 12rem;
+  }
 
   & > * {
     width: 100%;
@@ -23,9 +29,6 @@
     }
   }
 
-  @media (max-width: 70em) {
-    bottom: -5.25rem;
-  }
 
   @media (max-width: 50em) {
     flex-direction: column;
@@ -40,14 +43,10 @@
     color: var(--black);
     word-wrap: break-word;
     font-weight: 500;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 
-    @media (max-width: 70em) {
-      font-size: 1.5rem;
-    }
-
-    @media (max-width: 40em) {
-      font-size: 1.25rem;
+    @media (min-width: 40em) {
+      font-size: 1.75rem;
     }
   }
 }

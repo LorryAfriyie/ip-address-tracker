@@ -2,12 +2,13 @@
   background-image: url('/pattern-bg-mobile.png');
   background-repeat: no-repeat;
   background-size: cover;
-  min-block-size: 35vh;
+  min-block-size: 40vh;
   position: relative;
 
   h2 {
     padding-block-start: 2rem;
     padding-block-end: 1rem;
+    font-weight: 500;
   }
 
 

@@ -8,7 +8,9 @@ type NetworkInfoProps = {
 export default function NetworkInfo({ ...props }: NetworkInfoProps) {
   const { ip, region, timezone, isp } = props;
   return (
-    <div className={"bg-white rounded-2xl dark-gray network-info"}>
+    <div
+      className={"bg-white rounded-2xl dark-gray network-info gap-4 md:gap-0"}
+    >
       <div className={"col"}>
         <small className={"uppercase font-bold"}>ip address</small>
         <p className={"xl:text-2xl ip-address"}>{ip}</p>
