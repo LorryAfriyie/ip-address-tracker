@@ -11,6 +11,13 @@
     font-weight: 500;
   }
 
+  /*p {
+    position: absolute;
+    bottom: 0;
+    font-size: 3rem;
+    z-index: 99;
+  }*/
+
 
   @media (min-width: 60em) {
     background-image: url('/pattern-bg-desktop.png');

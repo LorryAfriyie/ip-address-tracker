@@ -143,7 +143,7 @@ export default function IPTracker() {
           ref={inputRef}
           placeholder={"Search for any IP address or domain name"}
           className={
-            "rounded-l-2xl bg-white px-5 py-4 focus:outline-0 w-full sm:w-3/4"
+            "rounded-l-2xl bg-white px-5 py-4 focus:outline-0 w-full sm:w-3/4 lg:w-1/3"
           }
         />
 

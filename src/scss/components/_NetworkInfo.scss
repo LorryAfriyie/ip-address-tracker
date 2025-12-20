@@ -3,15 +3,17 @@
   display: flex;
   padding: 1.5rem;
   position: absolute;
-  top: 11rem;
   left: 5%;
   right: 5%;
+  top: 11rem;
 
   @media (min-width: 40em) {
     padding: 1.75rem;
-    left: 10%;
-    right: 10%;
-    top: 12rem;
+    padding-block-start: 2.5rem;
+    padding-block-end: 2.5rem;
+    left: 12%;
+    right: 12%;
+    top: 80%;
   }
 
   & > * {
@@ -37,6 +39,13 @@
 
   small {
     letter-spacing: .1rem;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5rem;
   }
 
   .ip-address, .region, .timezone, .isp {
