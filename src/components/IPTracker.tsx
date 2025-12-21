@@ -47,7 +47,6 @@ export default function IPTracker() {
   };
 
   function domainCheck(domain: URLSearchParams, apiKey: URLSearchParams) {
-    console.log("Check domain");
     domain.append("domain", track);
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${domain}`,
@@ -55,7 +54,6 @@ export default function IPTracker() {
   }
 
   function ipCheck(ipAddress: URLSearchParams, apiKey: URLSearchParams) {
-    console.log("Check IP");
     ipAddress.append("ipAddress", track);
     setUrlString(
       `https://geo.ipify.org/api/v2/country,city?${apiKey}&${ipAddress}`,
@@ -77,6 +75,7 @@ export default function IPTracker() {
   useEffect(() => {
     inputRef.current?.focus();
 
+    // Get the information for prompted data
     async function getGeoData() {
       try {
         await Axios.get(urlString)
@@ -105,12 +104,12 @@ export default function IPTracker() {
       }
     }
 
+    // Function to retrieve the ISP information
     function defaultData() {
       Axios.get(
         `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKeyValue}`,
       )
         .then((res) => {
-          console.log(res.data);
           setInternetData(res.data);
           setLat(res.data.location.lat);
           setLng(res.data.location.lng);
@@ -119,11 +118,17 @@ export default function IPTracker() {
           console.error(err.message);
         });
     }
+
+    // Load the ISP information
     defaultData();
 
+    // Load information of prompted data
+    // Check if the urlString hook if not empty
     if (urlString.length) getGeoData();
 
+    // Detect a keyboard button press
     inputRef.current?.addEventListener("keypress", (e) => {
+      // Check if the enter key was pressed
       if (e.key === "Enter") {
         e.preventDefault();
         buttonRef.current?.click();

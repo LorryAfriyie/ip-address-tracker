@@ -7,7 +7,6 @@ export default function ImageHeader() {
         IP Address Tracker
       </h2>
       <IPTracker />
-      {/*<p>wow</p>*/}
     </section>
   );
 }

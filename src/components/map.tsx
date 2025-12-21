@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties } from "react";
+import { type CSSProperties } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMapContext } from "../context/MapContext.tsx";
@@ -29,11 +29,6 @@ export default function Map() {
     scrollWheelZoom: false,
     style: mapStyles,
   };
-
-  useEffect(() => {
-    console.log(lat);
-    console.log(lng);
-  }, [lat, lng]);
 
   return (
     <>
