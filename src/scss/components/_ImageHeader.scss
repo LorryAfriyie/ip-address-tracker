@@ -11,7 +11,24 @@
     font-weight: 500;
   }
 
+  @media (min-width: 48em) {
+    min-block-size: 20vh;
+  }
+
   @media (min-width: 64em) {
+    min-block-size: 40vh;
     background-image: url('/pattern-bg-desktop.png');
+  }
+
+  @media (min-width: 80em) {
+    min-block-size: 30vh;
+  }
+
+  @media (min-width: 82em) {
+    min-block-size: 40vh;
+  }
+
+  @media (min-width: 96em) {
+    min-block-size: 30vh;
   }
 }
