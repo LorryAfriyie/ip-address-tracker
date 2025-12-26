@@ -12,12 +12,12 @@
   }
 
   @media (min-width: 48em) {
-    min-block-size: 20vh;
+    min-block-size: 25vh;
+    background-image: url('/pattern-bg-desktop.png');
   }
 
   @media (min-width: 64em) {
-    min-block-size: 40vh;
-    background-image: url('/pattern-bg-desktop.png');
+
   }
 
   @media (min-width: 80em) {
