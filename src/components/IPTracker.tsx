@@ -5,6 +5,7 @@ import { FaAngleRight } from "react-icons/fa";
 import Button from "./Button";
 import Input from "./Input";
 import { useMapContext } from "../context/MapContext.tsx";
+import { Arrow } from "./SVG.tsx";
 
 type GeoData = {
   as: {
@@ -157,7 +158,7 @@ export default function IPTracker() {
           ref={buttonRef}
           className={"text-white p-4 px-5 rounded-r-2xl ip-check-btn"}
         >
-          <FaAngleRight />
+          <Arrow />
         </Button>
       </div>
 

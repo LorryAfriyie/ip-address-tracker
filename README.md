@@ -80,15 +80,25 @@ To see how you can add code snippets, see below:
 <h1>Some HTML code I'm proud of</h1>
 ```
 
+Learning to use the nth-child property helped me to be able to exclude styling on of the children of the parent
+element.
+
 ```css
-.proud-of-this-css {
-    color: papayawhip;
+&:nth-child(1 of .col) {
+    border-left: 0;
 }
 ```
 
+In this section, I learned how to detect an keypress on the keyboard. In the following code snippet, it checks to see if
+the "Enter" key was pressed.
+
 ```js
-const proudOfThisFunc = () => {
-    console.log('🎉')
+inputRef.current?.addEventListener("keypress", (e) => {
+    // Check if the enter key was pressed
+    if (e.key === "Enter") {
+        e.preventDefault();
+        buttonRef.current?.click();
+    }
 }
 ```
 
