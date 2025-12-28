@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import NetworkInfo from "./NetworkInfo.tsx";
 import Axios from "axios";
-import { FaAngleRight } from "react-icons/fa";
 import Button from "./Button";
 import Input from "./Input";
 import { useMapContext } from "../context/MapContext.tsx";
