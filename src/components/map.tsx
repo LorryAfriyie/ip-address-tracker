@@ -1,20 +1,13 @@
+import L from "leaflet";
 import { type CSSProperties } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMapContext } from "../context/MapContext.tsx";
-import { Location } from "./SVG.tsx";
-import L from "leaflet";
+import markerIcon from "/icon-location.svg";
 
 const marker = new L.Icon({
-  iconUrl: <Location />,
-  iconRetinaUrl: <Location />,
-  iconAnchor: null,
-  popupAnchor: null,
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(60, 75),
-  className: "leaflet-div-icon",
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon,
 });
 
 type MyComponentProps = {
@@ -38,7 +31,7 @@ export default function Map() {
   const { lat, lng } = useMapContext();
 
   const mapProps = {
-    center: [0, 0],
+    center: [0, 0] as [number, number],
     zoom: 15,
     scrollWheelZoom: false,
     style: mapStyles,
@@ -50,7 +43,7 @@ export default function Map() {
       <MapContainer {...mapProps}>
         <MyComponent lat={lat} lng={lng} />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[lat, lng]} />
+        <Marker position={[lat, lng]} icon={marker} />
       </MapContainer>
     </>
   );
